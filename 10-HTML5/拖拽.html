@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .file {
+      width: 500px;
+      height: 300px;
+      background: lightblue;
+      text-align: center;
+      padding-top: 50px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <div class="file">
+    将文件拖到这里
+  </div>
+  <img src="" alt="" class="img">
+  <script>
+    const upload = document.querySelector('.file')
+    const img = document.querySelector('.img')
+
+    upload.addEventListener('dragover', (e) => {
+      e.preventDefault()
+    })
+
+    upload.addEventListener('drop', (e) => {
+      e.preventDefault()
+      
+      const file = e.dataTransfer.files[0]
+
+      const reader = new FileReader()
+      // reader.readAsDataURL(file)
+      // reader.readAsText(file)
+
+      reader.onload = function() {
+        console.log(this.result)
+      }
+      reader.onerror = function() {
+        console.log('fail')
+      }  
+    }, false)
+
+  </script>
+</body>
+</html>

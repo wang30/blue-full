@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #cvs {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <canvas width="800" height="600" id="cvs"></canvas>
+  <script>
+    const cvs = document.querySelector('#cvs')
+    const gd = cvs.getContext('2d')
+
+    const img = new Image()
+    img.src='./sprit1.jpg'
+    
+    const w = 27, h = 28
+    let dire = 'ArrowRight'
+    const loca = {
+      ArrowRight: 2,
+      ArrowLeft: 1,
+      ArrowUp: 3,
+      ArrowDown: 0,      
+    }
+    let l = 100, t = 100
+    let frame = 0
+
+    img.onload = () => {
+      setInterval(() => {
+        gd.clearRect(0, 0, cvs.width, cvs.height)
+        gd.drawImage(img,        
+          w*frame, h*loca[dire], w, h,
+          l, t, w*2, h*2
+        )
+
+        switch(dire) {
+          case 'ArrowRight': 
+            l += 10
+            break
+          case 'ArrowLeft': 
+            l -= 10
+            break
+          case 'ArrowUp': 
+            t -= 10
+            break
+          case 'ArrowDown': 
+            t += 10
+            break                                    
+        }
+        frame = (frame+1)%3
+      }, 160)
+    }
+
+    document.onkeydown = (ev) => {
+      dire = ev.key
+    }
+
+
+  </script>
+</body>
+</html>

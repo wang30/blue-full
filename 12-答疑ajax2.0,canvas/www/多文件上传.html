@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="file" multiple class="file"><br>
+  <input type="submit" class="submit">
+
+  <script>
+  const files = document.querySelector('.file')
+  const submit = document.querySelector('.submit')
+
+  
+  submit.addEventListener('click', (ev) => {
+    const xhr = new XMLHttpRequest()
+    xhr.open('post', '/upload', true)
+    
+    const formData = new FormData()
+
+    Array.from(files.files).forEach((item) => {
+      formData.append('f1', item)
+    })
+
+    xhr.send(formData)
+    xhr.addEventListener('readystatechange', () => {
+      if(xhr.readyState === 4) {
+        console.log(xhr.status)
+      }
+    })
+
+  })
+  </script>
+</body>
+</html>

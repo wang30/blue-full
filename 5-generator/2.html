@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+  <script src="runner2.js"></script>
+  <script>
+    // const a = $.ajax({
+    //   url: '/package.json',
+    //   dataType: 'json',
+    //   success(data) {
+    //     console.log(data)
+    //   },
+    //   error() {
+    //     console.log('error')
+    //   }
+    // })
+    // const b = $.ajax({
+    //   url: '/1.html',
+    //   dataType: 'text',
+    //   success(data) {
+    //     console.log(data)
+    //   },
+    //   error(error) {
+    //     console.log(error)
+    //   }
+    // })
+    
+    runner2(function *read() {
+      const data1 = yield $.ajax({
+        url: '/package.json',
+        dataType: 'json',
+      })
+      console.log(data1)
+
+      const data2 = yield $.ajax({
+        url: '1.json',
+        dataType: 'json',     
+      })
+      console.log(data2)
+    })
+
+   
+  </script>
+</head>
+<body>
+  2222
+</body>
+</html>

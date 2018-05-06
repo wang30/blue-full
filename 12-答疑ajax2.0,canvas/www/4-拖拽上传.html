@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .upload {
+      border: 1px solid #000;
+      text-align: center;
+      width: 500px;
+      height: 300px;
+      line-height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div class="upload">
+    将文件拖到这里
+  </div>
+
+  <script>
+  const upload = document.querySelector('.upload')
+  
+  upload.addEventListener('dragenter', () => {
+    upload.innerHTML = '松手上传'
+  })
+  upload.addEventListener('dragleave', () => {
+    upload.innerHTML = '将文件拖到这里'
+  })  
+
+  upload.addEventListener('dragover', (ev) => {       // 会触发下载
+    ev.preventDefault();      
+  })
+
+  upload.addEventListener('drop', (ev) => {           // 会触发浏览器直接打开文件
+    ev.preventDefault();
+
+    const formData = new FormData()
+    Array.from(ev.dataTransfer.files).forEach(item => {
+      formData.append('f1', item)
+    })
+
+    const xhr = new XMLHttpRequest()
+    xhr.open('post', '/upload', true)
+    xhr.send(formData)
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState === 4) {
+        alert(xhr.status)
+      }
+    }
+  })
+
+  
+  </script>
+</body>
+</html>

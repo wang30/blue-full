@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html {
+      background: lightblue;
+    }
+    #cvs {
+      background: lightgoldenrodyellow;
+      border: 1px solid lightgray;
+      margin: 10vh auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas width="800px" height="500px" id="cvs">
+
+  </canvas>
+  <script>
+    const cvs = document.querySelector('#cvs')
+    const gd = cvs.getContext('2d')
+    const pi = Math.PI
+    const cos = Math.cos
+    const sin = Math.sin
+    const colors=['#CF0', '#C0F', '#CFC', '#0CF']
+
+    const arc = (begin, end) => {                 // 画圆弧
+      // gd.beginPath()
+      gd.arc(200, 200, 100, (2-begin)*pi, (2-end)*pi, true)
+      gd.stroke()
+    }
+
+    const line = (angle) => {                     // 画直线
+      gd.beginPath()
+      const x = 200 + 100*cos(angle*pi)
+      const y = 200 - 100*sin(angle*pi)
+
+      gd.moveTo(200, 200)
+      gd.lineTo(x, y) 
+      gd.stroke()
+    }
+
+    const cake = (begin, end) => {                 // 部分饼图
+      line(begin)
+      arc(begin, end)
+      // line(end)
+    }
+  
+    const data=[581, 273, 1750, 201];
+
+    const wholeCake = (data) => {                  // 完整饼图
+      const sum = data.reduce((a, b) => a+b)
+      const percents = data.map(i => i/sum)
+      
+      let begin = 0
+      percents.forEach((e,i) => {
+        cake(begin, begin + e*2)
+        gd.fillStyle = colors[i]
+        gd.fill()
+        begin += e*2
+      });
+    }
+  
+    wholeCake(data)
+    gd.stroke() 
+  </script>
+</body>
+</html>

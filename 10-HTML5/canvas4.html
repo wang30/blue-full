@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html {
+      background: lightblue;
+    }
+    #cvs {
+      background: lightgoldenrodyellow;
+      border: 1px solid lightgray;
+      margin: 10vh auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas width="800px" height="500px" id="cvs">
+
+  </canvas>
+  <script>
+    const cvs = document.querySelector('#cvs')
+    const gd = cvs.getContext('2d')
+    
+    // gd.rect(100, 100, 300, 200)
+    // gd.strokeStyle = 'red'
+    // gd.stroke()
+
+    // gd.fillStyle = 'green'
+    // gd.fillRect(100, 100, 300, 200)
+
+    gd.strokeStyle = 'purple'
+    gd.strokeRect(100, 100, 300, 200)
+
+  </script>
+</body>
+</html>

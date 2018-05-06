@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #cvs {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <canvas width="800" height="600" id="cvs"></canvas>
+  <script>
+    const cvs = document.querySelector('#cvs')
+    const gd = cvs.getContext('2d')
+
+    const img = new Image()
+    img.src = './bd_logo.png'
+
+    img.onload = () => {
+      gd.drawImage(img, 0, 0)
+    }
+
+  </script>
+</body>
+</html>

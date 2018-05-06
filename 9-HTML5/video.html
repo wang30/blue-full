@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .parent {
+      height: 10px;
+      width: 400px;
+      background: lightgray;
+    }
+    .child {
+      height: 10px;
+      width: 0;
+      background: lightseagreen;
+    }
+  </style>
+  <script>
+    window.onload = () => {
+      const vd = document.querySelector('#vd')
+      const child = document.querySelector('.child')
+      const play = document.querySelector('#play')
+      const pause = document.querySelector('#pause')
+      const stop = document.querySelector('#stop')
+      
+      play.onclick = () => {
+        vd.play()
+      }
+      pause.onclick = () => {
+        vd.pause()
+      }
+      stop.onclick = () => {
+        vd.pause()
+        vd.currentTime = 0
+      }   
+
+      
+      vd.addEventListener('timeupdate', () => {
+        child.style.width = vd.currentTime/vd.duration*100 + '%'
+        console.log(vd.currentTime/vd.duration)
+      })   
+
+    }
+  </script>
+</head>
+<body>
+  <div>
+    <button id="play">播放</button>
+    <button id="pause">暂停</button>
+    <button id="stop">停止</button>
+  </div>
+  <div class="parent">
+    <div class="child"></div>
+  </div>
+  <video
+    id="vd"
+    controls
+    loop
+    poster="dog.jpg"
+    src="https://vd1.bdstatic.com/mda-hjmhaxk5y6zh8vxm/mda-hjmhaxk5y6zh8vxm.mp4">
+  </video>
+</body>
+</html>
